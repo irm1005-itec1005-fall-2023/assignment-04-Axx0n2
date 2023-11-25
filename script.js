@@ -28,6 +28,7 @@ let appContainer = document.getElementById(appID);
 
 
 let todoItems = [];
+let w = [0];
 let aForm = document.getElementById("userInput");
 let bList = document.getElementById("listItems");
 let cInput = document.getElementById("input");
@@ -38,12 +39,21 @@ aForm = document.addEventListener("submit", formInput);
 function formInput(e) {
   event.preventDefault();
 
-  todoItems.push(cInput.value);
+  w[0] = w[0] + 1; 
+
+
+  let ID = w[0];
+  let isCompleted = false;
+  let text = cInput.value;
+  let Obj = {id : ID, text : text, completed : isCompleted};
+
+
+  todoItems.push(Obj);
+  console.log(todoItems);
   //aForm.reset();
   renderData();
 
-  console.log(cInput.type);
-  text = cInput;
+
 
 
 
@@ -60,7 +70,7 @@ function renderData () {
   for (let i = 0 ; i < todoItems.length ; i++) {
   
     let listItem = document.createElement("li");
-    listItem.textContent = todoItems[i];
+    listItem.textContent = todoItems[i].text;
 
     let tempButton = document.createElement("button");
 
@@ -68,8 +78,42 @@ function renderData () {
 
     tempButton.dataset.super = i;
 
+    let mark = document.createElement("INPUT");
+    mark.setAttribute("type", "checkbox");
+    
+
+    mark.addEventListener("click", function(event){
+      console.log("checked");
+
+      
+      let x = todoItems[0].completed;
+      console.log(x);
+      x = true;
+      const element = event.target;
+      console.log(element);
+
+
+      if (element.checked == true) {
+        console.log("true")
+        todoItems[].completed = true;
+      }
+      else {
+
+        console.log("false");
+        todoItems[].completed = false;
+      }
+
+     
+
+    })
+
     tempButton.addEventListener("click", function(event){
     console.log("pressed")
+
+
+
+      
+
 
     todoItems.splice(event.target.dataset.super, 1);
 
@@ -79,13 +123,25 @@ function renderData () {
     });
 
     listItem.appendChild(tempButton);
-
+    listItem.appendChild(mark);
     bList.appendChild(listItem);
 
 
 
   }
-
+  function myFunction() {
+    // Get the checkbox
+    let checkBox = document.getElementById("myCheck");
+    // Get the output text
+    let text = document.getElementById("text");
+  
+    // If the checkbox is checked, display the output text
+    if (checkBox.checked == true){
+      text.style.display = "block";
+    } else {
+      text.style.display = "none";
+    }
+  }
 
 }
 
