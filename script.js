@@ -5,12 +5,18 @@ const headingText = "To do. To done. ✅";
 
 let appContainer = document.getElementById(appID);
 let array = [];
-let w = [0];
+
 
 
 let form = document.getElementById("userInput");
 let list = document.getElementById("listItems");
 let input = document.getElementById("input");
+
+
+
+
+let done = document.getElementById("btn-1");
+//done = document.addEventListener("click", clearMarked);
 
 
 form = document.addEventListener("submit", formInput);
@@ -19,7 +25,7 @@ form = document.addEventListener("submit", formInput);
 function formInput(event) {
     event.preventDefault();
 
-    w[0] = w[0] + 1; 
+
     array.push(input.value);
     document.getElementById("userInput").reset();
     renderData();
@@ -28,19 +34,26 @@ function formInput(event) {
 
 function renderData() {
 
-    console.log(array);
+    //console.log(array);
 
     list.innerHTML = "";
-    x =   w[0];; 
+    
     for (let i = 0; i < array.length ; i++) {
         let listItem = document.createElement("li");
 
         listItem.textContent = array[i];
+        //listItem = "false";
+        let tempArray = [];
+        Obj = {}
+        listItem.dataset.super = i;
+        listItem.id = false;
+        listItem.class="listID";
+
 
         let buttonRemove = document.createElement("button");
 
         buttonRemove.textContent = "remove";
-
+        
         buttonRemove.dataset.super = i;
         console.log(buttonRemove.dataset.super);
 
@@ -60,25 +73,43 @@ function renderData() {
 
         let box = document.createElement("button");
         box.textContent = "done";
-        //box.setAttribute("type", "checkbox");
         box.dataset.super = i;
+        box.id = "butter";
 
         box.addEventListener("click", function(event){
             
-            console.log(box);
-            x = buttonRemove.dataset.super;
-            console.log(x);
-            console.log(buttonRemove);
             if (buttonRemove.style.visibility == "hidden") {
-                console.log("found");
+                
                 buttonRemove.style.visibility = "visible";
+                //listItem.dataset.super = true;
+                listItem.id=true;
             }
             else  {
                 buttonRemove.style.visibility = "hidden";
-                console.log("huh?");
+                //listItem.dataset.super = false;
+                listItem.id=false;
             }
 
 
+        })
+
+        done.addEventListener("click", function(event){
+            //array.splice(event.target.dataset.super, 1);
+            let v = document.getElementsByClassName("listID");
+
+            for (let i = 0; i < array.length ; i++) {
+                console.log(v);
+
+                if (v.id == 'true') {
+                    console.log("removedElements")
+                    array.splice(v.dataset.super, 1);
+
+                }
+                
+                
+            }
+
+            //renderData();
         })
 
         
@@ -92,6 +123,24 @@ function renderData() {
 
 
 
+
+
+
+function clearMarked() {
+    let v = document.getElementById("listID");
+
+    for (let i = 0; i < array.length ; i++) {
+        console.log(array);
+        console.log(v);
+
+        if (v.dataset.super == 'true') {
+            console.log("removedElement")
+
+        }
+        
+        
+    }
+}
 
 
 
