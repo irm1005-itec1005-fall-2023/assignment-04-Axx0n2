@@ -64,6 +64,7 @@ main {
   border: 1rem;
   border-color: black;
   border-radius: 1rem;
+  
 }
 
 .enclose ul {
@@ -72,4 +73,43 @@ main {
   display:flex;
   flex-direction: column;
   min-height: 100px;
+}
+
+
+
+.btn {
+  background-color: aqua;
+  text-decoration: none;
+}
+
+
+.form-results {
+  padding: 0;
+}
+
+#mark {
+  background-color: rgb(255, 0, 0);
+  border-color: black;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 100rem;
+}
+
+
+.form-results button {
+  background-color: white;
+  border-color: black;
+  width: 1rem;
+  height: 1rem;
+}
+
+
+
+.form-results li{
+  list-style: none;
+  background-color: #bb5924;
+  margin: 0.2rem;
+  border-radius: 0.5rem;
+  padding: 0.2rem;
+  color: black;
 }

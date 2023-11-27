@@ -42,27 +42,48 @@ function renderData() {
         let listItem = document.createElement("li");
 
         listItem.textContent = array[i];
+
+
+
         //listItem = "false";
         let tempArray = [];
-        Obj = {}
         listItem.dataset.super = i;
-        listItem.id = false;
+        console.log(listItem.id);
+
+
+        
+        listItem.id = true;
+        /*
+        if (buttonRemove.style.visibility == "visible") {
+                
+            buttonRemove.style.visibility = "visible";
+            
+            listItem.id=false;
+            box.style.backgroundColor = "black";
+        }
+        
+        */
         listItem.class="listID";
 
 
         let buttonRemove = document.createElement("button");
+        buttonRemove.id = "mark";
 
-        buttonRemove.textContent = "remove";
+
         
         buttonRemove.dataset.super = i;
         console.log(buttonRemove.dataset.super);
 
+
+     
+
         buttonRemove.style.visibility = "hidden";
+        
 
         buttonRemove.addEventListener("click", function(event){
             console.log("you clicked on:", event.target.dataset.super, 1);
 
-
+            //buttonRemove.id = true;
             array.splice(event.target.dataset.super, 1);
 
             renderData();
@@ -72,75 +93,80 @@ function renderData() {
         });
 
         let box = document.createElement("button");
-        box.textContent = "done";
+        //box.textContent = "done";
         box.dataset.super = i;
         box.id = "butter";
+      
+  /*
 
+*/
         box.addEventListener("click", function(event){
             
+            
+            
+
             if (buttonRemove.style.visibility == "hidden") {
                 
                 buttonRemove.style.visibility = "visible";
-                //listItem.dataset.super = true;
-                listItem.id=true;
+                
+                listItem.id=false;
+                box.style.backgroundColor = "black";
             }
             else  {
                 buttonRemove.style.visibility = "hidden";
-                //listItem.dataset.super = false;
-                listItem.id=false;
+               
+                listItem.id=true;
+                box.style.backgroundColor = "white";
             }
 
 
         })
 
-        done.addEventListener("click", function(event){
-            //array.splice(event.target.dataset.super, 1);
-            let v = document.getElementsByClassName("listID");
 
-            for (let i = 0; i < array.length ; i++) {
-                console.log(v);
 
-                if (v.id == 'true') {
-                    console.log("removedElements")
-                    array.splice(v.dataset.super, 1);
-
-                }
-                
-                
-            }
-
-            //renderData();
-        })
-
-        
+        listItem.append(" ");
         listItem.append(box);
+        listItem.append(" ");
         listItem.appendChild(buttonRemove);
         list.appendChild(listItem);
+        
     }
 
 
 }
 
 
+done.addEventListener("click", function(){
+    //array.splice(event.target.dataset.super, 1);
+    let v = document.getElementsByClassName("listID");
+    
+    console.log(array);
+    
 
 
+    for (i = array.length ; i > 0 ; i = i -1) {
+        x = list.children[i-1].id;
+        console.log(x);
+        if (x == 'false') {
+            console.log("X");
+            
+            array.splice(i-1, 1);
+            
 
-
-function clearMarked() {
-    let v = document.getElementById("listID");
-
-    for (let i = 0; i < array.length ; i++) {
-        console.log(array);
-        console.log(v);
-
-        if (v.dataset.super == 'true') {
-            console.log("removedElement")
-
+            
+            
         }
         
-        
     }
-}
+    
+    renderData(); 
+    
+})
+
+
+
+
+
 
 
 
@@ -167,4 +193,4 @@ function inititialise() {
   //
   // Inits & Event Listeners
   //
-  inititialise();
+ // inititialise();
