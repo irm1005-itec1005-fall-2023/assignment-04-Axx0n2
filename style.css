@@ -41,21 +41,6 @@ main {
   align-items: center;
 }
 
-
-/****** Screen reader text utility clsas *******/
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-
 .enclose {
   background-color: #bb5924;
   display: flex;
@@ -82,7 +67,9 @@ main {
   text-decoration: none;
 }
 
-
+.enter {
+  margin-bottom: 1rem;
+}
 .form-results {
   padding: 0;
 }
@@ -112,4 +99,31 @@ main {
   border-radius: 0.5rem;
   padding: 0.2rem;
   color: black;
+
+  
+
+  
 }
+
+.MarkedBtn {
+  background-color: aqua;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  
+}
+
+
+/****** Screen reader text utility clsas *******/
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+

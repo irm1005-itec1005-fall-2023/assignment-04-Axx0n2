@@ -2,7 +2,7 @@
 const appID = "app";
 const headingText = "To do. To done. ✅";
 
-
+//inialised elements
 let appContainer = document.getElementById(appID);
 let array = [];
 
@@ -16,12 +16,14 @@ let input = document.getElementById("input");
 
 
 let done = document.getElementById("btn-1");
-//done = document.addEventListener("click", clearMarked);
+
+
+
 
 
 form = document.addEventListener("submit", formInput);
 
-
+//enters user input to array
 function formInput(event) {
     event.preventDefault();
 
@@ -31,10 +33,10 @@ function formInput(event) {
     renderData();
 
 }
-
+//renders data as an unordered list based on array elements
 function renderData() {
 
-    //console.log(array);
+ 
 
     list.innerHTML = "";
     
@@ -43,63 +45,44 @@ function renderData() {
 
         listItem.textContent = array[i];
 
-
-
-        //listItem = "false";
-        let tempArray = [];
         listItem.dataset.super = i;
         console.log(listItem.id);
 
 
-        
-        listItem.id = true;
-        /*
-        if (buttonRemove.style.visibility == "visible") {
-                
-            buttonRemove.style.visibility = "visible";
-            
-            listItem.id=false;
-            box.style.backgroundColor = "black";
-        }
-        
-        */
+        listItem.id = true;//sets list item to uncompleted
+
         listItem.class="listID";
 
 
+
+        //creating the delete button, setting values, and hiding element from view
         let buttonRemove = document.createElement("button");
         buttonRemove.id = "mark";
-
-
-        
         buttonRemove.dataset.super = i;
         console.log(buttonRemove.dataset.super);
-
-
-     
-
         buttonRemove.style.visibility = "hidden";
         
-
+        //function for removing list item
         buttonRemove.addEventListener("click", function(event){
             console.log("you clicked on:", event.target.dataset.super, 1);
 
-            //buttonRemove.id = true;
-            array.splice(event.target.dataset.super, 1);
 
-            renderData();
+            array.splice(event.target.dataset.super, 1);//item is removed from list
 
-            //console.log(typeCount[i].type + " - " + typeCount[i].count)
+            renderData();//rerender list from array
+
+  
 
         });
 
+
+        //create toggle button
         let box = document.createElement("button");
-        //box.textContent = "done";
+
         box.dataset.super = i;
         box.id = "butter";
       
-  /*
-
-*/
+        //function to reveal or hide deleat button, sets id of list element to completed or not
         box.addEventListener("click", function(event){
             
             
@@ -123,25 +106,21 @@ function renderData() {
         })
 
 
-
+        //add together elements, and add to list
         listItem.append(" ");
         listItem.append(box);
         listItem.append(" ");
         listItem.appendChild(buttonRemove);
         list.appendChild(listItem);
         
+        
     }
 
 
 }
 
-
+//function to remove all completed items from list and array
 done.addEventListener("click", function(){
-    //array.splice(event.target.dataset.super, 1);
-    let v = document.getElementsByClassName("listID");
-    
-    console.log(array);
-    
 
 
     for (i = array.length ; i > 0 ; i = i -1) {
